@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaverilista</title>
+</head>
+<body>
+
+<h2>Kaverilista</h2>
+<label for="kaveriNimi">Syötä nimi:</label>
+<input type="text" id="kaveriNimi">
+<button onclick="lisaaKaveri()">Lisää kaveri</button>
+<button onclick="poistaKaveri()">Poista kaveri</button>
+<button onclick="jarjestaKaverit()">Järjestä kaverit</button>
+
+<div id="kaveriLista"></div>
+
+<script>
+  // Versio 2: Käytä JavaScriptin Array-metodeja
+  let kaverit2 = [];
+
+  function lisaaKaveri() {
+    let nimiInput = document.getElementById("kaveriNimi");
+    let nimi = nimiInput.value.trim();
+    if (nimi !== "") {
+      kaverit2.push(nimi);
+      nimiInput.value = ""; // Tyhjennä kenttä
+      paivitaKaveriLista();
+    } else {
+      alert("Syötä kaverin nimi.");
+    }
+  }
+
+  function poistaKaveri() {
+    let nimiInput = document.getElementById("kaveriNimi");
+    let nimi = nimiInput.value.trim();
+    let index = kaverit2.indexOf(nimi);
+    if (index !== -1) {
+      kaverit2.splice(index, 1);
+      paivitaKaveriLista();
+    } else {
+      alert("Kaveria ei löytynyt.");
+    }
+  }
+
+  function jarjestaKaverit() {
+    kaverit2.sort();
+    paivitaKaveriLista();
+  }
+
+  function paivitaKaveriLista() {
+    let kaveriListaDiv = document.getElementById("kaveriLista");
+    kaveriListaDiv.innerHTML = "<h3>Kaverit:</h3>";
+    let lista = "<ul>";
+    kaverit2.forEach(function(nimi) {
+      lista += "<li>" + nimi + "</li>";
+    });
+    lista += "</ul>";
+    kaveriListaDiv.innerHTML = lista; // Korvaa sisällön uudella listalla
+  }
+</script>
+
+</body>
+</html>
