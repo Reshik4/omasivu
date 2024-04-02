@@ -1,0 +1,104 @@
+body {
+    background: linear-gradient(to right, #080808, #fa033d);
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center; /* Horisontaalinen keskitys */
+    align-items: center; /* Vertikaalinen keskitys */
+    height: 100vh; /* Asetetaan korkeus koko näytön kokoiseksi */
+}
+
+h1 {
+    margin: 20px;
+    font-size: 6rem;
+    color: rgb(208, 214, 218);
+}
+
+.dice-area {
+    margin: 0px 50px;
+    text-align: center;
+    display: inline-block;
+}
+
+p {
+    font-size: 2.5rem;
+    color: rgb(208, 214, 218);
+}
+
+img{
+    width: 320px;
+}
+
+#startButton {
+    background-color: #4CAF50; /* Vihreä taustaväri */
+    color: white; /* Valkoinen tekstiväri */
+    padding: 15px 32px; /* Padding ylä- ja alapuolella 15 pikseliä, sivuilla 32 pikseliä */
+    text-align: center; /* Tekstin keskitys */
+    text-decoration: none; /* Poistetaan korostus */
+    display: inline-block;
+    font-size: 2.5rem;
+    margin: 4px 2px; /* Marginaali ylä- ja alapuolella 4 pikseliä, sivuilla 2 pikseliä */
+    cursor: pointer; /* Käden kuvake hiiren päällä */
+    border-radius: 12px; /* Pyöristetyt reunat */
+}
+
+/* Muokataan Päätä vuoro -napin tyyliä */
+#endTurnButton {
+    width: auto; /* Aseta automaattinen leveys */
+    height: auto; /* Aseta automaattinen korkeus */
+    position: fixed;
+    top: 50%;
+    left: 10px; /* Aseta sopiva etäisyys sivun vasemmasta reunasta */
+    transform: translateY(-50%);
+    background-color: #008CBA; /* Sininen taustaväri */
+    color: white; /* Valkoinen tekstiväri */
+    padding: 15px 32px; /* Padding ylä- ja alapuolella 15 pikseliä, sivuilla 32 pikseliä */
+    text-align: center; /* Tekstin keskitys */
+    text-decoration: none; /* Poistetaan korostus */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px; /* Marginaali ylä- ja alapuolella 4 pikseliä, sivuilla 2 pikseliä */
+    cursor: pointer; /* Käden kuvake hiiren päällä */
+    border-radius: 12px; /* Pyöristetyt reunat */
+}
+
+/* Muokataan Heitä-napin tyyliä */
+#throwButton {
+    width: auto; /* Aseta automaattinen leveys */
+    height: auto; /* Aseta automaattinen korkeus */
+    position: fixed;
+    top: 40%;
+    left: 10px; /* Aseta sopiva etäisyys sivun vasemmasta reunasta */
+    transform: translateY(-50%);
+    background-color: #00ba00; /* Sininen taustaväri */
+    color: white; /* Valkoinen tekstiväri */
+    padding: 15px 32px; /* Padding ylä- ja alapuolella 15 pikseliä, sivuilla 32 pikseliä */
+    text-align: center; /* Tekstin keskitys */
+    text-decoration: none; /* Poistetaan korostus */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px; /* Marginaali ylä- ja alapuolella 4 pikseliä, sivuilla 2 pikseliä */
+    cursor: pointer; /* Käden kuvake hiiren päällä */
+    border-radius: 12px; /* Pyöristetyt reunat */
+}
+
+/* Muokataan pelaajanimen tyyliä */
+.player p {
+    color: #050300; /* Oranssi väri */
+}
+
+/* Muokataan pistelaskurin tyyliä */
+.player img + p {
+    color: #008000; /* Tummanvihreä väri */
+}
+
+#playerCount {
+    font-size: 2rem; /* Aseta haluamasi fonttikoko */
+    /* Muut mahdolliset muokkaukset */
+}
+
+#confirmPlayers {
+    font-size: 2rem; /* Aseta haluamasi fonttikoko */
+    /* Muut mahdolliset muokkaukset */
+}

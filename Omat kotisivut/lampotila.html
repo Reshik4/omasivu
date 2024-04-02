@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lämpötilamuunnin</title>
+</head>
+<body>
+
+<h2>Lämpötilamuunnin</h2>
+
+<label for="lämpötila">Anna lämpötila:</label>
+<input type="text" id="lämpötila">
+<select id="lähtöyksikkö">
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+  <option value="kelvin">Kelvin</option>
+</select>
+<span>muunna</span>
+<select id="kohdeyksikkö">
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+  <option value="kelvin">Kelvin</option>
+</select>
+<label for="desimaalit">Desimaalit:</label>
+<select id="desimaalit">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+<button onclick="muunna()">Muunna</button>
+
+<p id="vastaus"></p>
+
+<script>
+function muunna() {
+  let lämpötilaInput = document.getElementById("lämpötila");
+  let lähtöyksikköSelect = document.getElementById("lähtöyksikkö");
+  let kohdeyksikköSelect = document.getElementById("kohdeyksikkö");
+  let desimaalitSelect = document.getElementById("desimaalit");
+  let vastausElementti = document.getElementById("vastaus");
+
+  let lämpötila = parseFloat(lämpötilaInput.value);
+  let lähtöyksikkö = lähtöyksikköSelect.value;
+  let kohdeyksikkö = kohdeyksikköSelect.value;
+  let desimaalit = parseInt(desimaalitSelect.value);
+  let vastaus;
+
+  if (isNaN(lämpötila)) {
+    vastaus = "Virhe: Anna kelvin-lämpötila numerona.";
+  } else {
+    if (lähtöyksikkö === "celsius" && kohdeyksikkö === "fahrenheit") {
+      vastaus = ((lämpötila * 9/5) + 32).toFixed(desimaalit) + " °F";
+    } else if (lähtöyksikkö === "celsius" && kohdeyksikkö === "kelvin") {
+      vastaus = (lämpötila + 273.15).toFixed(desimaalit) + " K";
+    } else if (lähtöyksikkö === "fahrenheit" && kohdeyksikkö === "celsius") {
+      vastaus = ((lämpötila - 32) * 5/9).toFixed(desimaalit) + " °C";
+    } else if (lähtöyksikkö === "fahrenheit" && kohdeyksikkö === "kelvin") {
+      vastaus = ((lämpötila - 32) * 5/9 + 273.15).toFixed(desimaalit) + " K";
+    } else if (lähtöyksikkö === "kelvin" && kohdeyksikkö === "celsius") {
+      vastaus = (lämpötila - 273.15).toFixed(desimaalit) + " °C";
+    } else if (lähtöyksikkö === "kelvin" && kohdeyksikkö === "fahrenheit") {
+      vastaus = ((lämpötila - 273.15) * 9/5 + 32).toFixed(desimaalit) + " °F";
+    } else {
+      vastaus = "Sama yksikkö valittu, ei tarvitse muuntaa.";
+    }
+  }
+
+  vastausElementti.textContent = vastaus;
+}
+</script>
+
+</body>
+</html>

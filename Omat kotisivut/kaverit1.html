@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaverilista</title>
+</head>
+<body>
+
+<h2>Kaverilista</h2>
+<input type="text" id="kaveriNimi">
+<button onclick="lisaaKaveri()">Lisää kaveri</button>
+
+<div id="kaveriLista"></div>
+
+<script>
+  let kaverit2 = [];
+
+  function lisaaKaveri() {
+    let nimiInput = document.getElementById("kaveriNimi");
+    let nimi = nimiInput.value.trim();
+    if (nimi !== "") {
+      if (kaverit2.length < 10) { 
+        kaverit2.push(nimi);
+        nimiInput.value = ""; 
+        paivitaKaveriLista();
+      } else {
+        alert("Voit lisätä enintään 10 kaveria.");
+      }
+    } else {
+      alert("Syötä kaverin nimi.");
+    }
+  }
+
+  function paivitaKaveriLista() {
+    let kaveriListaDiv = document.getElementById("kaveriLista");
+    kaveriListaDiv.innerHTML = "<h3>Kaverit:</h3>";
+    let lista = "<ul>";
+    kaverit2.forEach(function(nimi) {
+      lista += "<li>" + nimi + "</li>";
+    });
+    lista += "</ul>";
+    kaveriListaDiv.innerHTML += lista;
+  }
+</script>
+
+</body>
+</html>

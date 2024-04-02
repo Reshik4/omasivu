@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikanoppa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <button id="startButton">Aloita</button>
+        
+        <div id="userInputs" style="display: none;">
+            <input type="number" id="playerCount" placeholder="Pelaajien määrä">
+            <button id="confirmPlayers">Vahvista</button>
+            
+            <div id="playerNameInputs" style="display: none;">
+                <!-- Input fields for player names will be generated dynamically based on the player count -->
+                <!-- Additionally, we'll add an input to select the number of dice -->
+                <input type="number" id="diceCount" min="1" max="2" value="2" placeholder="Noppia">
+                <button id="confirmNames">Vahvista nimet</button>
+            </div>
+        </div>
+
+        <div id="players" style="display: none;">
+            <!-- Player information will be displayed dynamically -->
+        </div>
+    </div>
+
+    <script src="script.js" charset="utf-8"></script>
+</body>
+</html>

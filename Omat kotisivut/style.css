@@ -1,0 +1,77 @@
+body {
+    animation: taustavari-anim 5s infinite alternate; 
+    background: linear-gradient(45deg, #5f1d1d, #6a6b6a, #141414); 
+    background-color: #ff6600; 
+    background-size: 300% 100%; 
+    background-attachment: fixed;
+    background-position: center;
+}
+/* Määrittele animaatio */
+@keyframes taustavari-anim {
+    0% {
+        background-position: 0% 50%; 
+    }
+    100% {
+        background-position: 100% 50%; 
+    }
+}
+
+header {
+    text-align: center;
+    color: white;
+
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    border: 3px;
+    display: grid;
+    margin-right: 0px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+nav ul li a {
+    border: 2px solid rgb(143, 141, 141);
+    text-decoration:none;
+    color: #f3eaea;
+}
+li a:hover {
+    background-color: #080808;
+    color: white;
+  }
+.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+div{
+    position: relative;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height:fit-content;
+    border:3px solid rgb(124, 124, 124);
+    padding: 0px;
+    
+}
+h3{
+    font-size: 1,7em;
+    text-align: center;
+    color: #fdfbfb;
+}
+
+p{
+    
+    text-align: center;
+    color: white;
+}
+footer{
+    margin: 100px;
+    bottom: 10%;
+}
