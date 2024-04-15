@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lomakkeen validointi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    form {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+    input[type="text"],
+    input[type="password"],
+    textarea,
+    select {
+      width: calc(100% - 12px);
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .virheviesti {
+      color: red;
+      font-size: 0.9em;
+      text-align: left;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .takaisin-nappi {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #525353;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.takaisin-nappi:hover {
+    background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+
+<h2>Rekisteröitymislomake</h2>
+<a href="index.html" class="takaisin-nappi">Takaisin etusivulle</a>
+
+<form id="rekisteröitymislomake">
+  <div>
+    <label for="käyttäjäID">Käyttäjä ID:</label>
+    <input type="text" id="käyttäjäID" name="käyttäjäID">
+    <span id="käyttäjäIDVirhe" class="virheviesti"></span>
+  </div>
+  <div>
+    <label for="salasana">Salasana:</label>
+    <input type="password" id="salasana" name="salasana">
+    <span id="salasanaVirhe" class="virheviesti"></span>
+  </div>
+  <div>
+    <label for="postinumero">Postinumero:</label>
+    <input type="text" id="postinumero" name="postinumero">
+    <span id="postinumeroVirhe" class="virheviesti"></span>
+  </div>
+  <div>
+    <label for="maa">Maa:</label>
+    <select id="maa" name="maa">
+      <option value="suomi">Suomi</option>
+      <option value="ruotsi">Ruotsi</option>
+      <option value="norja">Norja</option>
+      <option value="tanska">Tanska</option>
+      <option value="islanti">Islanti</option>
+    </select>
+  </div>
+  <div>
+    <label for="sukupuoli">Sukupuoli:</label>
+    <select id="sukupuoli" name="sukupuoli">
+      <option value="mies">Mies</option>
+      <option value="nainen">Nainen</option>
+    </select>
+  </div>
+  <div>
+    <label for="sähköposti">Sähköposti:</label>
+    <input type="text" id="sähköposti" name="sähköposti">
+    <span id="sähköpostiVirhe" class="virheviesti"></span>
+  </div>
+  <div>
+    <label for="lisätietoja">Lisätietoja:</label>
+    <textarea id="lisätietoja" name="lisätietoja"></textarea>
+  </div>
+  <button type="button" onclick="validoiLomake()">Lähetä</button>
+</form>
+
+<script>
+function validoiLomake() {
+  // Tyhjennetään virheilmoitukset
+  var virheviestit = document.getElementsByClassName("virheviesti");
+  for (var i = 0; i < virheviestit.length; i++) {
+    virheviestit[i].innerHTML = "";
+  }
+
+  var käyttäjäID = document.getElementById("käyttäjäID").value;
+  var salasana = document.getElementById("salasana").value;
+  var postinumero = document.getElementById("postinumero").value;
+  var maa = document.getElementById("maa").value;
+  var sukupuoli = document.getElementById("sukupuoli").value;
+  var sähköposti = document.getElementById("sähköposti").value;
+
+  var käyttäjäIDVirhe = document.getElementById("käyttäjäIDVirhe");
+  var salasanaVirhe = document.getElementById("salasanaVirhe");
+  var postinumeroVirhe = document.getElementById("postinumeroVirhe");
+  var sähköpostiVirhe = document.getElementById("sähköpostiVirhe");
+
+  var virheet = false;
+
+  // Käyttäjä ID validointi
+  if (käyttäjäID === "") {
+    käyttäjäIDVirhe.innerHTML = "Käyttäjä ID on pakollinen";
+    virheet = true;
+  } else if (käyttäjäID.length < 6) {
+    käyttäjäIDVirhe.innerHTML = "Käyttäjä ID:n pitää olla vähintään 6 merkkiä pitkä";
+    virheet = true;
+  }
+
+ // Salasanan validointi
+if (salasana === "") {
+  salasanaVirhe.innerHTML = "Salasana on pakollinen";
+  virheet = true;
+} else {
+  var salasanaRegexp = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@£$€&%#]).{6,}$/;
+  if (!salasanaRegexp.test(salasana)) {
+    salasanaVirhe.innerHTML = "Salasanan pitää olla 6 merkkiä pitkä ja sisältää vähintään yksi numero, yksi iso kirjain ja joku erikoismerkeistä";
+    virheet = true;
+  } else {
+    salasanaVirhe.innerHTML = ""; // Tyhjennä virheteksti, jos salasana on kelvollinen
+  }
+}
+
+
+  // Postinumeron validointi
+  if (postinumero === "") {
+    postinumeroVirhe.innerHTML = "Postinumero on pakollinen";
+    virheet = true;
+  } else if (postinumero.length !== 5 || isNaN(postinumero)) {
+    postinumeroVirhe.innerHTML = "Postinumerossa pitää olla 5 numeroa";
+    virheet = true;
+  }
+
+  // Sähköpostin validointi
+  if (sähköposti === "") {
+    sähköpostiVirhe.innerHTML = "Sähköposti on pakollinen";
+    virheet = true;
+  } else if (!/\S+@\S+\.\S+/.test(sähköposti)) {
+    sähköpostiVirhe.innerHTML = "Sähköpostiosoitteen tulee olla sähköpostiosoitteen muotoinen";
+    virheet = true;
+  }
+
+  // Tarkistetaan, onko virheitä ja palautetaan sen mukaan
+  if (virheet) {
+    return false;
+  } else {
+    return true;
+  }
+}
+</script>
+
+</body>
+</html>
